@@ -1,0 +1,63 @@
+---
+label: Config
+hide_body: true
+is_partial: false
+fields:
+  - type: text
+    name: title
+    label: Title
+    description: Site title
+    config:
+      required: true
+  - type: field_group
+    name: header
+    label: Header Configuration
+    fields:
+      - type: file
+        name: logo_img_src
+        label: Header Logo
+        description: The logo displayed On the upper left side of the page header
+  - type: field_group
+    name: contact
+    label: Contact Section Configuration
+    fields:
+      - type: boolean
+        name: enabled
+        label: Enabled
+        description: Displays the section in the site footer
+        default: false
+      - type: text
+        name: title
+        label: Section Title
+  - type: field_group
+    name: social
+    label: Social Section Configuration
+    fields:
+      - type: boolean
+        name: enabled
+        label: Enabled
+        default: false
+      - type: text
+        name: title
+        label: Section Title
+      - type: field_group_list
+        name: follow_section
+        label: Social Media Icons
+        description: A list of social media icons
+        config:
+          labelField: title
+        fields:
+          - type: text
+            name: title
+            label: Icon Title
+            config:
+              required: true
+          - type: text
+            name: icon
+            label: Icon
+            description: Font Awesome Icon
+            config:
+              required: true
+          - type: text
+            name: link_url
+            label: URL
