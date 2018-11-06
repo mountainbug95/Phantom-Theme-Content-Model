@@ -1,0 +1,196 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: uploads
+public_folder: /uploads
+collections:
+  - name: config
+    label: Config
+    files:
+      - name: config
+        label: Config
+        file: _config.yml
+        fields:
+          - name: title
+            label: Title
+            widget: text
+            required: true
+          - name: header
+            widget: object
+            required: false
+            label: Header Configuration
+            fields:
+              - name: logo_img_src
+                widget: image
+                required: false
+                label: Header Logo
+                hint: The logo displayed On the upper left side of the page header
+          - name: contact
+            widget: object
+            required: false
+            label: Contact Section Configuration
+            fields:
+              - name: enabled
+                widget: boolean
+                required: false
+                label: Enabled
+                default: false
+                hint: Displays the section in the site footer
+              - name: title
+                widget: string
+                required: false
+                label: Section Title
+          - name: social
+            widget: object
+            required: false
+            label: Social Section Configuration
+            fields:
+              - name: enabled
+                widget: boolean
+                required: false
+                label: Enabled
+                default: false
+              - name: title
+                widget: string
+                required: false
+                label: Section Title
+              - name: follow_section
+                widget: list
+                required: false
+                label: Social Media Icons
+                hint: A list of social media icons
+                fields:
+                  - name: title
+                    widget: string
+                    required: true
+                    label: Icon Title
+                  - name: icon
+                    widget: string
+                    required: true
+                    label: Icon
+                    hint: Font Awesome Icon
+                  - name: link_url
+                    widget: string
+                    required: false
+                    label: URL
+  - name: home
+    label: Home
+    files:
+      - name: home
+        label: Home
+        file: index.md
+        fields:
+          - name: title
+            widget: string
+            required: true
+            label: Page Title
+          - name: header
+            widget: text
+            required: false
+            label: Page Header
+            hint: The bold text displayed at the top of the page
+          - name: layout
+            widget: hidden
+            required: true
+            label: Layout
+            default: home
+          - name: body
+            label: Content
+            widget: markdown
+  - name: page
+    label: Pages
+    folder: /
+    filter:
+      field: layout
+      value: page
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - name: title
+        widget: string
+        required: true
+        label: Page Title
+      - name: img_src
+        widget: image
+        required: false
+        label: Content Image
+        hint: The Image displayed in the content section of the page
+      - name: layout
+        widget: hidden
+        required: true
+        label: Layout
+        default: page
+      - name: body
+        label: Content
+        widget: markdown
+  - name: post
+    label: Posts
+    folder: _posts
+    filter:
+      field: layout
+      value: page
+    create: true
+    extension: md
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - name: title
+        widget: string
+        required: true
+        label: Page Title
+      - name: home_style
+        widget: select
+        required: true
+        label: Home Thumbnail Style
+        hint: The style used for the home thumbnail
+        options:
+          - style1
+          - style2
+          - style3
+          - style4
+          - style5
+          - style6
+          - style7
+      - name: home_img
+        widget: image
+        required: false
+        label: Home Thumbnail Image
+        hint: The Image displayed in the home thumbnail on hover
+      - name: excerpt
+        widget: markdown
+        required: false
+        label: Excerpt
+        hint: The text displayed in the home thumbnail on hover
+      - name: date
+        widget: date
+        required: true
+        label: Post Date
+      - name: img_src
+        widget: image
+        required: false
+        label: Content Image
+        hint: The Image displayed in the content section of the page
+      - name: layout
+        widget: hidden
+        required: true
+        label: Layout
+        default: page
+      - name: body
+        label: Content
+        widget: markdown
+  - name: elements
+    label: Elements
+    files:
+      - name: elements
+        label: Elements
+        file: elements.d
+        fields:
+          - name: title
+            widget: string
+            required: true
+            label: Page Title
+          - name: layout
+            widget: hidden
+            required: true
+            label: Layout
+            default: elements
